@@ -123,9 +123,9 @@ def get_complement(sequence):
     compRNA= ""
     if not(sequence == ""):
         
-        comp = {'A':'U','U':'A','G':'C','C':'G'}
+        comp = {'a':'u','u':'a','g':'c','c':'g'}
         compRNA = ""
-        for a in sequence:
+        for a in sequence.lower():
             compRNA += comp[a]
         return compRNA.upper()
     else:

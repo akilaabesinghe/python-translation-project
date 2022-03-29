@@ -106,7 +106,8 @@ def get_reverse(sequence):
         reverse = sequence [::-1]
         rev_up = reverse.upper()
         return rev_up
-
+    else:
+        return ""
 def get_complement(sequence):
     """Get the complement of a `sequence` of nucleotides.
 
@@ -126,7 +127,9 @@ def get_complement(sequence):
         compRNA = ""
         for a in sequence:
             compRNA += comp[a]
-        return compRNA
+        return compRNA.upper()
+    else:
+        return ""
 
 def reverse_and_complement(sequence):
     """Get the reversed and complemented form of a `sequence` of nucleotides.
@@ -151,6 +154,8 @@ def reverse_and_complement(sequence):
         for a in rev_up:
             compRNA += comp[a]
         return compRNA
+    else:
+        return ""
 
 def get_longest_peptide(rna_sequence, genetic_code):
     """Get the longest peptide encoded by an RNA sequence.

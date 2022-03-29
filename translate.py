@@ -27,7 +27,9 @@ def translate_sequence(rna_sequence, genetic_code):
 
     Returns
     -------
-    str
+    strif not(sequence == ""):
+        
+
         A string of the translated amino acids.
     """
     translated_amino_acids = ""
@@ -86,7 +88,6 @@ def get_all_translations(rna_sequence, genetic_code):
         `rna_sequence`.
     """
     pass
-
 def get_reverse(sequence):
     """Reverse orientation of `sequence`.
 

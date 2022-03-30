@@ -87,7 +87,52 @@ def get_all_translations(rna_sequence, genetic_code):
         A list of strings; each string is an sequence of amino acids encoded by
         `rna_sequence`.
     """
-    pass
+    translated_amino_acids_list = []
+    translated_amino_acids = ""
+    if not(rna_sequence == ""):
+        rna_split_List = []
+
+        i = 0
+        while i <= 2:
+           
+            rna_split = []
+            n  = 3
+            upper_rna_sequence = rna_sequence.upper()
+            for index in range(i, len(upper_rna_sequence), n):
+                rna_split.append(upper_rna_sequence[index : index + n])
+
+            rna_split_List.append(rna_split)
+            i += 1
+
+        flag = 0
+        for rna_list_element in rna_split_List:
+            flag2 = 0
+            translated_amino_acids = ""
+            for rna_element in rna_list_element:
+                if len(rna_element) == 3 : 
+                    if findGeneticCode(genetic_code,rna_element) == "AUG":
+                        translated_amino_acids += genetic_code.get(rna_element)
+                        flag2 = 1
+                        
+                    else:
+                        if flag2 == 1:
+                            if genetic_code.get(rna_element) == "*" :
+                                break
+                            else:
+                                translated_amino_acids += genetic_code.get(rna_element)
+
+            if len(translated_amino_acids) > 0 :        
+                translated_amino_acids_list.append(translated_amino_acids)
+                
+    return translated_amino_acids_list
+
+def findGeneticCode(genetic_code, key):
+    for element in genetic_code:
+        if key == genetic_code[element]:
+            return key
+        else:
+            return key
+
 def get_reverse(sequence):
     """Reverse orientation of `sequence`.
 
@@ -184,7 +229,21 @@ def get_longest_peptide(rna_sequence, genetic_code):
         A string of the longest sequence of amino acids encoded by
         `rna_sequence`.
     """
-    pass
+    new_translation_list = []
+    translation_list_01 = get_all_translations(rna_sequence,genetic_code)
+    translation_list_02 = get_all_translations(reverse_and_complement(rna_sequence),genetic_code)
+
+    new_translation_list += translation_list_01 + translation_list_02
+
+    print (new_translation_list)
+    max = 0
+    str = ""
+    for element in new_translation_list:
+        if len(element) > max:
+            max = len(element)
+            str =  element
+
+    return  str  
 
 
 if __name__ == '__main__':
